@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Elcira ⚡ - Nigeria's Premier Electronics Marketplace</title>
@@ -10,11 +11,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Dynamic Favicon (kept original style) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%2300ff9d%22 stroke=%22%231a1a2e%22 stroke-width=%224%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22%231a1a2e%22 font-family=%22Arial%22 font-weight=%22bold%22>⚡</text></svg>">
-    
     <style>
-        /* ====== RESET & MODERN VARIABLES ====== */
+        /* ====== RESET & VARIABLES ====== */
         * {
             margin: 0;
             padding: 0;
@@ -23,52 +21,40 @@
         }
 
         :root {
-            /* Nigerian-inspired vibrant palette */
-            --primary: #00ff9d;        /* Electric green - Nigeria flag accent */
+            --primary: #00ff9d;
             --primary-dark: #00cc7a;
             --primary-glow: rgba(0, 255, 157, 0.4);
-            --secondary: #ff3366;       /* Vibrant pink */
-            --accent: #7c3aed;          /* Deep purple */
-            --accent-2: #ff9f1c;         /* Golden amber */
+            --secondary: #ff3366;
+            --accent: #7c3aed;
             
-            /* Dark theme (modern, sleek) */
             --bg-dark: #0a0a0f;
             --bg-card: #14141f;
             --bg-card-hover: #1a1a2a;
             --bg-gradient: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
             
-            /* Text */
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.7);
             --text-muted: rgba(255, 255, 255, 0.5);
             
-            /* Status */
             --success: #00ff9d;
             --warning: #ff9f1c;
             --danger: #ff3366;
-            --info: #7c3aed;
             
-            /* Effects */
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.05);
-            --glass-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             
-            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-            --shadow-lg: 0 25px 50px -12px rgba(0, 255, 157, 0.25);
             --shadow-glow: 0 0 30px var(--primary-glow);
+            --shadow-lg: 0 25px 50px -12px rgba(0, 255, 157, 0.25);
             
             --radius-sm: 8px;
             --radius-md: 16px;
             --radius-lg: 24px;
-            --radius-xl: 32px;
             
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             
             /* Mobile-first spacing */
             --mobile-padding: 16px;
-            --grid-gap-mobile: 12px;
-            --grid-gap-desktop: 24px;
+            --grid-gap: 12px;
         }
 
         body {
@@ -79,12 +65,8 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            position: relative;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Animated background */
         body::before {
             content: '';
             position: fixed;
@@ -106,9 +88,9 @@
             padding: 0 var(--mobile-padding);
         }
 
-        /* ====== UTILITY CLASSES ====== */
+        /* ====== UTILITIES ====== */
         .btn {
-            padding: 0.875rem 1.5rem;
+            padding: 0.875rem 1rem;
             border: none;
             border-radius: var(--radius-md);
             font-weight: 600;
@@ -120,11 +102,7 @@
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.3px;
             width: 100%;
-            max-width: 100%;
         }
 
         @media (min-width: 768px) {
@@ -135,34 +113,10 @@
             }
         }
 
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
         .btn.primary {
             background: var(--primary);
             color: var(--bg-dark);
             box-shadow: 0 0 20px var(--primary-glow);
-        }
-
-        .btn.primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 0 30px var(--primary-glow);
         }
 
         .btn.secondary {
@@ -172,41 +126,19 @@
             backdrop-filter: blur(10px);
         }
 
-        .btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .btn.glow {
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: var(--bg-dark);
-            font-weight: 700;
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none !important;
+        .btn.small {
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
         }
 
         .section-title {
-            font-size: 2.2rem;
+            font-size: 2rem;
             font-weight: 800;
             background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
             text-align: center;
-            position: relative;
-            line-height: 1.2;
-        }
-
-        @media (min-width: 768px) {
-            .section-title {
-                font-size: 3rem;
-                margin-bottom: 2rem;
-            }
         }
 
         .section-title::after {
@@ -217,14 +149,6 @@
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             margin: 0.75rem auto 0;
             border-radius: 2px;
-        }
-
-        @media (min-width: 768px) {
-            .section-title::after {
-                width: 100px;
-                height: 4px;
-                margin: 1rem auto 0;
-            }
         }
 
         /* ====== HEADER ====== */
@@ -249,7 +173,6 @@
             .header .container {
                 flex-direction: row;
                 justify-content: space-between;
-                gap: 1.5rem;
             }
         }
 
@@ -268,7 +191,6 @@
             }
         }
 
-        /* ----- REPLACED EMOJI WITH IMAGE FROM ASSET FOLDER ----- */
         .logo-icon {
             width: 44px;
             height: 44px;
@@ -277,21 +199,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('assets/elcira-logo.png');
+            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NSIgZmlsbD0iIzAwZmY5ZCIgc3Ryb2tlPSIjMWEyYTIwIiBzdHJva2Utd2lkdGg9IjQiLz48dGV4dCB4PSI1MCIgeT0iNjgiIGZvbnQtc2l6ZT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYTFhMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiPkU8L3RleHQ+PC9zdmc+');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             box-shadow: var(--shadow-glow);
             animation: pulse 2s infinite;
-            position: relative;
             flex-shrink: 0;
-        }
-
-        @media (min-width: 768px) {
-            .logo-icon {
-                width: 50px;
-                height: 50px;
-            }
         }
 
         .logo-text h1 {
@@ -300,19 +213,6 @@
             background: linear-gradient(135deg, #fff, var(--primary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-        }
-
-        @media (min-width: 768px) {
-            .logo-text h1 {
-                font-size: 1.8rem;
-            }
-        }
-
-        .logo-text p {
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.5px;
         }
 
         .nav {
@@ -338,77 +238,30 @@
             padding: 0.6rem 0.9rem;
             border-radius: var(--radius-md);
             transition: var(--transition);
-            position: relative;
             font-size: 0.9rem;
             white-space: nowrap;
-        }
-
-        @media (min-width: 768px) {
-            .nav-link {
-                padding: 0.75rem 1.25rem;
-                font-size: 1rem;
-            }
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-link:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-link:hover::after {
-            width: 60%;
         }
 
         .admin-btn {
             background: linear-gradient(135deg, var(--secondary), var(--accent));
             color: white !important;
             font-weight: 600;
-            box-shadow: 0 0 20px rgba(255, 51, 102, 0.3);
         }
 
-        /* ====== HERO SECTION ====== */
+        /* ====== HERO ====== */
         .hero {
-            padding: 3rem 0;
+            padding: 2.5rem 0;
             position: relative;
             overflow: hidden;
         }
 
         @media (min-width: 768px) {
             .hero {
-                padding: 6rem 0;
+                padding: 4rem 0;
             }
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 80%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(0, 255, 157, 0.1) 0%, transparent 70%);
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         .hero-content {
-            position: relative;
-            z-index: 2;
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
@@ -427,36 +280,20 @@
             backdrop-filter: blur(10px);
         }
 
-        @media (min-width: 768px) {
-            .hero-badge {
-                padding: 0.5rem 1.5rem;
-                font-size: 0.9rem;
-                margin-bottom: 2rem;
-            }
-        }
-
         .hero h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
-            line-height: 1.1;
+            line-height: 1.2;
             margin-bottom: 1rem;
             background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradientFlow 8s ease infinite;
-            background-size: 200% 200%;
         }
 
         @media (min-width: 768px) {
             .hero h2 {
-                font-size: 4.5rem;
-                margin-bottom: 1.5rem;
+                font-size: 3.5rem;
             }
-        }
-
-        @keyframes gradientFlow {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         .hero p {
@@ -467,26 +304,12 @@
             padding: 0 1rem;
         }
 
-        @media (min-width: 768px) {
-            .hero p {
-                font-size: 1.3rem;
-                margin: 0 auto 2.5rem;
-            }
-        }
-
         .hero-stats {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
-            margin-top: 2rem;
+            margin: 2rem 0;
             flex-wrap: wrap;
-        }
-
-        @media (min-width: 768px) {
-            .hero-stats {
-                gap: 3rem;
-                margin-top: 3rem;
-            }
         }
 
         .stat-item {
@@ -495,55 +318,32 @@
         }
 
         .stat-value {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary);
             display: block;
-        }
-
-        @media (min-width: 768px) {
-            .stat-value {
-                font-size: 2.5rem;
-            }
         }
 
         .stat-label {
             color: var(--text-muted);
             font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        @media (min-width: 768px) {
-            .stat-label {
-                font-size: 0.9rem;
-                letter-spacing: 1px;
-            }
         }
 
         /* ====== CATEGORY TABS ====== */
         .category-section {
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-radius: var(--radius-lg);
-            margin: 1.5rem 0;
-        }
-
-        @media (min-width: 768px) {
-            .category-section {
-                padding: 3rem 0;
-                border-radius: var(--radius-xl);
-                margin: 2rem 0;
-            }
+            margin: 1rem 0;
         }
 
         .category-tabs {
             display: flex;
-            gap: 0.75rem;
+            gap: 0.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            padding: 0 0.5rem;
         }
 
         .tab-btn {
@@ -555,12 +355,9 @@
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
-            font-size: 0.85rem;
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
+            font-size: 0.8rem;
             flex: 1 1 auto;
-            min-width: calc(50% - 0.75rem);
+            min-width: calc(50% - 0.5rem);
             white-space: nowrap;
         }
 
@@ -568,37 +365,7 @@
             .tab-btn {
                 min-width: auto;
                 padding: 0.75rem 1.25rem;
-                font-size: 0.9rem;
             }
-        }
-
-        @media (min-width: 768px) {
-            .tab-btn {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-            }
-        }
-
-        .tab-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 255, 157, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .tab-btn:hover::before {
-            left: 100%;
-        }
-
-        .tab-btn:hover {
-            border-color: var(--primary);
-            color: var(--text-primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-glow);
         }
 
         .tab-btn.active {
@@ -609,21 +376,15 @@
             box-shadow: 0 0 20px var(--primary-glow);
         }
 
-        /* ====== PRODUCTS GRID - MOBILE FIRST, MODERN & ADVANCED ====== */
+        /* ====== PRODUCTS GRID ====== */
         .products-section {
-            padding: 2.5rem 0;
-        }
-
-        @media (min-width: 768px) {
-            .products-section {
-                padding: 4rem 0;
-            }
+            padding: 2rem 0;
         }
 
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: var(--grid-gap-mobile);
+            gap: var(--grid-gap);
         }
 
         @media (min-width: 640px) {
@@ -635,13 +396,7 @@
         @media (min-width: 1024px) {
             .products-grid {
                 grid-template-columns: repeat(4, 1fr);
-                gap: var(--grid-gap-desktop);
-            }
-        }
-
-        @media (min-width: 1280px) {
-            .products-grid {
-                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
             }
         }
 
@@ -651,33 +406,10 @@
             overflow: hidden;
             border: 1px solid var(--glass-border);
             transition: var(--transition);
-            position: relative;
             display: flex;
             flex-direction: column;
             height: 100%;
-            backdrop-filter: blur(10px);
-        }
-
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            border-radius: var(--radius-lg);
-            padding: 2px;
-            background: linear-gradient(135deg, var(--primary), transparent, var(--secondary));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-        }
-
-        .product-card:hover::before {
-            opacity: 1;
+            cursor: pointer;
         }
 
         .product-card:hover {
@@ -686,25 +418,19 @@
             background: var(--bg-card-hover);
         }
 
-        @media (min-width: 768px) {
-            .product-card:hover {
-                transform: translateY(-8px);
-            }
-        }
-
         .product-image-wrapper {
             position: relative;
-            overflow: hidden;
             aspect-ratio: 1 / 1;
             width: 100%;
             background: linear-gradient(45deg, var(--bg-dark), var(--bg-card));
+            overflow: hidden;
         }
 
         .product-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.5s;
         }
 
         .product-card:hover img {
@@ -722,17 +448,6 @@
             font-weight: 700;
             font-size: 0.7rem;
             z-index: 2;
-            box-shadow: var(--shadow-sm);
-            white-space: nowrap;
-        }
-
-        @media (min-width: 768px) {
-            .product-badge {
-                top: 1rem;
-                right: 1rem;
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
         }
 
         .product-card-content {
@@ -742,14 +457,8 @@
             flex: 1;
         }
 
-        @media (min-width: 768px) {
-            .product-card-content {
-                padding: 1.25rem;
-            }
-        }
-
         .product-card h3 {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
             color: var(--text-primary);
@@ -760,247 +469,326 @@
             overflow: hidden;
         }
 
-        @media (min-width: 768px) {
-            .product-card h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.5rem;
-            }
-        }
-
-        .product-description {
-            color: var(--text-muted);
-            font-size: 0.75rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-
-        @media (min-width: 768px) {
-            .product-description {
-                font-size: 0.9rem;
-                margin-bottom: 0.75rem;
-                -webkit-line-clamp: 3;
-            }
-        }
-
         .product-meta {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-            gap: 0.25rem;
-        }
-
-        @media (min-width: 768px) {
-            .product-meta {
-                margin-bottom: 0.75rem;
-                gap: 0.5rem;
-            }
+            font-size: 0.7rem;
         }
 
         .category-badge {
             padding: 0.2rem 0.4rem;
             border-radius: 100px;
-            font-size: 0.65rem;
-            font-weight: 600;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--primary);
+            font-size: 0.65rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             max-width: 70%;
         }
 
-        @media (min-width: 768px) {
-            .category-badge {
-                padding: 0.4rem 0.8rem;
-                font-size: 0.75rem;
-            }
-        }
-
         .product-stock {
-            font-size: 0.65rem;
             font-weight: 600;
             white-space: nowrap;
         }
 
-        @media (min-width: 768px) {
-            .product-stock {
-                font-size: 0.8rem;
-            }
-        }
-
-        .product-stock.in-stock {
-            color: var(--success);
-        }
-
-        .product-stock.low-stock {
-            color: var(--warning);
-        }
-
-        .product-stock.out-of-stock {
-            color: var(--danger);
-        }
+        .product-stock.in-stock { color: var(--success); }
+        .product-stock.low-stock { color: var(--warning); }
+        .product-stock.out-of-stock { color: var(--danger); }
 
         .product-price {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
             font-weight: 800;
             color: var(--primary);
             margin: 0.5rem 0;
-            display: flex;
-            align-items: baseline;
-            gap: 0.25rem;
         }
 
-        @media (min-width: 768px) {
-            .product-price {
-                font-size: 1.8rem;
-                margin: 0.75rem 0;
-            }
-        }
-
-        .product-price .naira {
-            font-size: 1rem;
-            opacity: 0.7;
-        }
-
-        @media (min-width: 768px) {
-            .product-price .naira {
-                font-size: 1.3rem;
-            }
-        }
-
-        .product-actions {
-            display: flex;
-            gap: 0.5rem;
+        .view-details-btn {
+            background: transparent;
+            border: 1px solid var(--glass-border);
+            color: var(--text-secondary);
+            padding: 0.5rem;
+            border-radius: var(--radius-md);
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: var(--transition);
             margin-top: 0.5rem;
-            flex-wrap: wrap;
         }
 
-        @media (min-width: 768px) {
-            .product-actions {
-                gap: 0.75rem;
-                margin-top: 1rem;
-            }
+        .view-details-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
-        .product-actions .btn {
+        /* ====== PRODUCT DETAILS MODAL ====== */
+        .product-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: var(--mobile-padding);
+        }
+
+        .product-modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--glass-border);
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .product-modal-header {
+            padding: 1.25rem;
+            border-bottom: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .product-modal-header h2 {
+            color: var(--bg-dark);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .product-modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--bg-dark);
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+
+        .product-modal-close:hover {
+            background: rgba(0, 0, 0, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .product-modal-body {
+            padding: 1.5rem;
+        }
+
+        /* Image Gallery */
+        .image-gallery {
+            margin-bottom: 1.5rem;
+        }
+
+        .main-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background: var(--bg-dark);
+        }
+
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+        }
+
+        .thumbnail {
+            aspect-ratio: 1 / 1;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            background: var(--bg-dark);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            opacity: 0.9;
+        }
+
+        /* Product Info */
+        .product-info {
+            margin-top: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .product-info .category-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-info .price-large {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .product-info .description-full {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: var(--glass-bg);
+            border-radius: var(--radius-md);
+            border-left: 4px solid var(--primary);
+        }
+
+        .stock-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--bg-dark);
+            border-radius: var(--radius-md);
+        }
+
+        .stock-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .stock-badge.in-stock {
+            background: rgba(0, 255, 157, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+        }
+
+        .stock-badge.low-stock {
+            background: rgba(255, 159, 28, 0.1);
+            color: var(--warning);
+            border: 1px solid var(--warning);
+        }
+
+        .stock-badge.out-of-stock {
+            background: rgba(255, 51, 102, 0.1);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+
+        .product-actions-modal {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .product-actions-modal .btn {
             flex: 1;
-            padding: 0.6rem 0.25rem;
-            font-size: 0.75rem;
+            padding: 1rem;
         }
 
-        @media (min-width: 768px) {
-            .product-actions .btn {
-                padding: 0.7rem 0.5rem;
-                font-size: 0.85rem;
-            }
-        }
-
-        /* ====== AGENTS SECTION (ABOUT US) ====== */
+        /* Agents Grid */
         .agents-section {
-            padding: 3rem 0;
+            padding: 2rem 0;
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-radius: var(--radius-lg);
-            margin: 2rem 0;
-        }
-
-        @media (min-width: 768px) {
-            .agents-section {
-                padding: 5rem 0;
-                border-radius: var(--radius-xl);
-                margin: 3rem 0;
-            }
+            margin: 1.5rem 0;
         }
 
         .agents-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         @media (min-width: 640px) {
             .agents-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
             }
         }
 
         @media (min-width: 1024px) {
             .agents-grid {
                 grid-template-columns: repeat(3, 1fr);
-                gap: 2rem;
-                margin-top: 3rem;
             }
         }
 
         .agent-card {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
-            padding: 1.5rem;
+            padding: 1.25rem;
             text-align: center;
             border: 1px solid var(--glass-border);
             transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        @media (min-width: 768px) {
-            .agent-card {
-                padding: 2rem;
-            }
-        }
-
-        .agent-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-        }
-
-        .agent-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        @media (min-width: 768px) {
-            .agent-card:hover {
-                transform: translateY(-8px);
-            }
         }
 
         .agent-image-wrapper {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             margin: 0 auto 1rem;
             position: relative;
-        }
-
-        @media (min-width: 768px) {
-            .agent-image-wrapper {
-                width: 150px;
-                height: 150px;
-                margin: 0 auto 1.5rem;
-            }
         }
 
         .agent-image-wrapper::before {
             content: '';
             position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
             animation: rotate 4s linear infinite;
@@ -1017,7 +805,7 @@
         }
 
         .agent-name {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 0.25rem;
             background: linear-gradient(135deg, #fff, var(--primary));
@@ -1025,20 +813,12 @@
             -webkit-text-fill-color: transparent;
         }
 
-        @media (min-width: 768px) {
-            .agent-name {
-                font-size: 1.6rem;
-                margin-bottom: 0.5rem;
-            }
-        }
-
         .agent-role {
             color: var(--secondary);
             font-weight: 600;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
             font-size: 0.8rem;
+            text-transform: uppercase;
         }
 
         .agent-location {
@@ -1047,18 +827,32 @@
             justify-content: center;
             gap: 0.25rem;
             color: var(--text-secondary);
-            margin-bottom: 0.75rem;
             font-size: 0.9rem;
+            margin-bottom: 0.5rem;
         }
 
         .agent-contact {
             display: flex;
             justify-content: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             margin-top: 1rem;
         }
 
-        /* ====== MODAL STYLES ====== */
+        .agent-contact a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* Checkout Modal */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -1071,13 +865,10 @@
             justify-content: center;
             align-items: flex-end;
             z-index: 2000;
-            padding: 0;
         }
 
         @media (min-width: 768px) {
             .modal-overlay {
-                background: rgba(0, 0, 0, 0.8);
-                backdrop-filter: blur(20px);
                 align-items: center;
                 padding: 20px;
             }
@@ -1090,27 +881,19 @@
             max-height: 90vh;
             overflow-y: auto;
             border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-            animation: modalSlideUp 0.3s ease-out;
+            animation: slideUp 0.3s;
         }
 
         @media (min-width: 768px) {
             .modal {
                 border-radius: var(--radius-lg);
                 max-width: 500px;
-                animation: modalSlideUp 0.4s;
             }
         }
 
-        @keyframes modalSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
         }
 
         .modal-header {
@@ -1126,13 +909,6 @@
         .modal-header h3 {
             color: var(--bg-dark);
             font-size: 1.2rem;
-            font-weight: 700;
-        }
-
-        @media (min-width: 768px) {
-            .modal-header h3 {
-                font-size: 1.4rem;
-            }
         }
 
         .close-btn {
@@ -1146,22 +922,21 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 50%;
-            transition: var(--transition);
         }
 
         .modal-body {
             padding: 1.25rem;
         }
 
-        @media (min-width: 768px) {
-            .modal-body {
-                padding: 2rem;
-            }
-        }
-
         .form-group {
             margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
         }
 
         .form-group input {
@@ -1172,7 +947,30 @@
             border-radius: var(--radius-md);
             color: var(--text-primary);
             font-size: 0.95rem;
-            transition: var(--transition);
+        }
+
+        .order-summary {
+            background: var(--bg-dark);
+            padding: 1.25rem;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--primary);
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .summary-item.total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--glass-border);
         }
 
         .form-actions {
@@ -1187,51 +985,12 @@
             }
         }
 
-        /* ====== NOTIFICATION ====== */
-        .notification {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            left: 10px;
-            z-index: 10000;
-            animation: slideInRight 0.3s;
-            max-width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .notification {
-                top: 20px;
-                right: 20px;
-                left: auto;
-                max-width: 400px;
-            }
-        }
-        
-        .notification-content {
-            padding: 1rem;
-            border-radius: var(--radius-md);
-            background: var(--bg-card);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--shadow-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            font-size: 0.9rem;
-        }
-
-        /* ====== FOOTER ====== */
+        /* Footer */
         .footer {
             background: var(--bg-dark);
-            padding: 3rem 0 1.5rem;
+            padding: 2.5rem 0 1.5rem;
             margin-top: auto;
             border-top: 1px solid var(--glass-border);
-        }
-
-        @media (min-width: 768px) {
-            .footer {
-                padding: 4rem 0 2rem;
-            }
         }
 
         .footer-content {
@@ -1250,8 +1009,6 @@
         @media (min-width: 1024px) {
             .footer-content {
                 grid-template-columns: 2fr repeat(3, 1fr);
-                gap: 2rem;
-                margin-bottom: 3rem;
             }
         }
 
@@ -1261,8 +1018,43 @@
             color: var(--primary);
         }
 
-        .footer-section p, .footer-section li {
-            font-size: 0.9rem;
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            border: 1px solid var(--glass-border);
         }
 
         .footer-bottom {
@@ -1273,94 +1065,11 @@
             font-size: 0.8rem;
         }
 
-        @media (min-width: 768px) {
-            .footer-bottom {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* ====== ABOUT SECTION ====== */
-        .about-section {
-            padding: 3rem 0;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        @media (min-width: 768px) {
-            .about-section {
-                padding: 4rem 0;
-            }
-            
-            .about-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 3rem;
-            }
-        }
-
-        .about-features {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-        }
-
-        @media (min-width: 768px) {
-            .about-features {
-                gap: 1.5rem;
-            }
-        }
-
-        .feature-card {
-            background: var(--glass-bg);
-            border-radius: var(--radius-lg);
-            padding: 1.25rem;
-            text-align: center;
-            border: 1px solid var(--glass-border);
-        }
-
-        @media (min-width: 768px) {
-            .feature-card {
-                padding: 1.5rem;
-            }
-        }
-
-        .feature-card i {
-            font-size: 2rem;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        @media (min-width: 768px) {
-            .feature-card i {
-                font-size: 2.5rem;
-                margin-bottom: 1rem;
-            }
-        }
-
-        .feature-card h3 {
-            font-size: 1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        @media (min-width: 768px) {
-            .feature-card h3 {
-                font-size: 1.2rem;
-            }
-        }
-
-        .feature-card p {
-            font-size: 0.8rem;
-        }
-
-        /* ====== LOADING STATES ====== */
+        /* Loading */
         .loading {
             grid-column: 1/-1;
             text-align: center;
-            padding: 3rem 1rem;
+            padding: 2rem;
         }
 
         .spinner {
@@ -1377,41 +1086,59 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Touch-friendly improvements */
-        button, .nav-link, .btn, .tab-btn, .social-link {
-            touch-action: manipulation;
-            cursor: pointer;
-            -webkit-tap-highlight-color: transparent;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
-        /* Hide spinner on number inputs */
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
+        .hidden {
+            display: none;
+        }
+
+        .error-message {
+            color: var(--danger);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .about-section {
+            padding: 2rem 0;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            text-align: center;
+            border: 1px solid var(--glass-border);
         }
     </style>
 </head>
 <body>
-    <!-- Header (same HTML structure, no changes needed) -->
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
                 <div class="logo-icon"></div>
                 <div class="logo-text">
                     <h1>Elcira</h1>
-                    <p></p>
                 </div>
             </div>
             <nav class="nav">
                 <a href="#products" class="nav-link">Products</a>
-                <a href="#agents" class="nav-link">Our Agents</a>
-                <a href="#about" class="nav-link">About Us</a>
+                <a href="#agents" class="nav-link">Agents</a>
+                <a href="#about" class="nav-link">About</a>
                 <a href="/admin" class="nav-link admin-btn">
                     <i class="fas fa-crown"></i> Admin
                 </a>
@@ -1419,34 +1146,33 @@
         </div>
     </header>
 
-    <!-- Hero Section (same HTML structure) -->
+    <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <span class="hero-badge">
-                    <i class="fas fa-bolt"></i> POWERING NIGERIA'S TECH FUTURE
+                    <i class="fas fa-bolt"></i> BAUCHI'S #1 TECH HUB
                 </span>
                 <h2>Your Gateway to Premium Electronics</h2>
-                <p>Elcira brings you the finest electronic components, digital products, and learning materials with delivery to Bauchi state and expert agent support at ATBU Yelwa & Gubi campuses.</p>
+                <p>Electronic components, digital products, and learning materials with expert support at ATBU Yelwa & Gubi campuses.</p>
                 
                 <div class="hero-stats">
                     <div class="stat-item">
-                        <span class="stat-value"></span>
-                        <span class="stat-label"></span>
+                        <span class="stat-value">1000+</span>
+                        <span class="stat-label">Products</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-value"></span>
-                        <span class="stat-label"></span>
+                        <span class="stat-value">4.9</span>
+                        <span class="stat-label">Rating</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-value">24/7</span>
-                        <span class="stat-label">Agent Support</span>
+                        <span class="stat-label">Support</span>
                     </div>
                 </div>
                 
-                <button class="btn primary glow" style="margin-top: 2rem;" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+                <button class="btn primary" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
                     <i class="fas fa-shopping-bag"></i> Start Shopping
-                    <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </div>
@@ -1489,21 +1215,15 @@
     <section class="agents-section" id="agents">
         <div class="container">
             <h2 class="section-title">Meet Our Agents</h2>
-            <p style="text-align: center; color: var(--text-secondary); max-width: 700px; margin: 0 auto 2rem; font-size: 0.95rem;">
-                Our dedicated agents across Bauchi state are here to assist you with expert advice and local support — including ATBU Yelwa and Gubi campuses.
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                Dedicated agents across Bauchi state — including ATBU Yelwa and Gubi campuses.
             </p>
             
             <div class="agents-grid" id="agentsGrid">
                 <div class="loading">
                     <div class="spinner"></div>
-                    <p>Loading our amazing team...</p>
+                    <p>Loading our team...</p>
                 </div>
-            </div>
-            
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="#contact" class="btn secondary">
-                    <i class="fas fa-phone-alt"></i> Contact Our Agents
-                </a>
             </div>
         </div>
     </section>
@@ -1511,63 +1231,53 @@
     <!-- About Section -->
     <section class="about-section" id="about">
         <div class="container">
-            <div class="about-grid">
-                <div>
-                    <h2 style="font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1.5rem;">
-                        Bauchi's Fastest Growing<br>
-                        <span style="color: var(--primary);">Tech Marketplace</span>
-                    </h2>
-                    <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.95rem;">
-                        Elcira was founded with a vision to make premium electronic components and tech education accessible to every Nigerian innovator — starting from Bauchi state, serving ATBU Yelwa and Gubi campuses.
-                    </p>
-                    <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem;">
-                        Today, we serve customers across bauchi city with our network of expert agents who provide local support, installation assistance, and technical guidance.
+            <h2 class="section-title">About Elcira</h2>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                <div style="text-align: center;">
+                    <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                        Founded in Bauchi to make premium electronics accessible to every Nigerian innovator. 
+                        We serve ATBU Yelwa, Gubi campuses, and beyond with expert agent support.
                     </p>
                     
-                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                        <div>
-                            <span style="font-size: 1.5rem; font-weight: 800; color: var(--primary);"></span>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;"></p>
+                    <div class="about-features">
+                        <div class="feature-card">
+                            <i class="fas fa-truck-fast" style="font-size: 2rem; color: var(--primary);"></i>
+                            <h3>Fast Delivery⚡</h3>
                         </div>
-                        <div>
-                            <span style="font-size: 1.5rem; font-weight: 800; color: var(--primary);"></span>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">vast inventory</p>
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt" style="font-size: 2rem; color: var(--primary);"></i>
+                            <h3>Secure</h3>
                         </div>
-                        <div>
-                            <span style="font-size: 1.5rem; font-weight: 800; color: var(--primary);">9</span>
-                            <p style="color: var(--text-muted); font-size: 0.9rem;">Agent Locations</p>
+                        <div class="feature-card">
+                            <i class="fas fa-headset" style="font-size: 2rem; color: var(--primary);"></i>
+                            <h3>24/7 Support</h3>
                         </div>
-                    </div>
-                </div>
-                
-                <div class="about-features">
-                    <div class="feature-card">
-                        <i class="fas fa-truck-fast"></i>
-                        <h3>Fast Delivery⚡</h3>
-                        <p style="color: var(--text-muted);">same-day in Bauchi</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Secure</h3>
-                        <p style="color: var(--text-muted);">100% protection</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <i class="fas fa-headset"></i>
-                        <h3>24/7 Support</h3>
-                        <p style="color: var(--text-muted);">via local agents</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <i class="fas fa-arrow-rotate-left"></i>
-                        <h3>Easy Returns</h3>
-                        <p style="color: var(--text-muted);">7-day guarantee</p>
+                        <div class="feature-card">
+                            <i class="fas fa-arrow-rotate-left" style="font-size: 2rem; color: var(--primary);"></i>
+                            <h3>Easy Returns</h3>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Product Details Modal -->
+    <div class="product-modal-overlay" id="productModal">
+        <div class="product-modal">
+            <div class="product-modal-header">
+                <h2 id="modalProductTitle">Product Details</h2>
+                <button class="product-modal-close" id="closeProductModal">&times;</button>
+            </div>
+            <div class="product-modal-body" id="productModalBody">
+                <!-- Content loaded dynamically -->
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading product details...</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Checkout Modal -->
     <div class="modal-overlay" id="checkoutModal">
@@ -1579,29 +1289,20 @@
             <div class="modal-body">
                 <form id="checkoutForm">
                     <div class="form-group">
-                        <label for="customerName">
-                            <i class="fas fa-user"></i> Full Name
-                        </label>
-                        <input type="text" id="customerName" name="customerName" 
-                               placeholder="John Doe" required minlength="2">
+                        <label for="customerName">Full Name</label>
+                        <input type="text" id="customerName" name="customerName" placeholder="John Doe" required>
                         <div class="error-message" id="nameError"></div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="customerEmail">
-                            <i class="fas fa-envelope"></i> Email Address
-                        </label>
-                        <input type="email" id="customerEmail" name="customerEmail" 
-                               placeholder="john@example.com" required>
+                        <label for="customerEmail">Email Address</label>
+                        <input type="email" id="customerEmail" name="customerEmail" placeholder="john@example.com" required>
                         <div class="error-message" id="emailError"></div>
                     </div>
                     
                     <div class="form-group">
-                        <label for="customerPhone">
-                            <i class="fas fa-phone"></i> Phone Number
-                        </label>
-                        <input type="tel" id="customerPhone" name="customerPhone" 
-                               placeholder="+234 801 234 5678">
+                        <label for="customerPhone">Phone Number</label>
+                        <input type="tel" id="customerPhone" name="customerPhone" placeholder="+234 801 234 5678">
                     </div>
                     
                     <div class="order-summary" id="orderSummary"></div>
@@ -1609,13 +1310,9 @@
                     <input type="hidden" id="selectedProductId" name="productId">
                     
                     <div class="form-actions">
-                        <button type="button" class="btn secondary" id="cancelBtn">
-                            <i class="fas fa-times"></i> Cancel
-                        </button>
+                        <button type="button" class="btn secondary" id="cancelBtn">Cancel</button>
                         <button type="submit" class="btn primary" id="submitBtn">
-                            <span class="btn-text">
-                                <i class="fas fa-credit-card"></i> Proceed
-                            </span>
+                            <span class="btn-text">Proceed to Payment</span>
                             <span class="spinner hidden" id="submitSpinner"></span>
                         </button>
                     </div>
@@ -1633,12 +1330,11 @@
                         <div class="logo-icon" style="width: 36px; height: 36px;"></div>
                         <h3 style="font-size: 1.3rem;">Elcira</h3>
                     </div>
-                    <p>Bauchi state's premier destination for electronic components, digital products, and tech education.</p>
+                    <p>Bauchi's premier destination for electronics and tech education.</p>
                     <div class="social-links">
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 
@@ -1646,19 +1342,8 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#products" class="footer-link">Products</a></li>
-                        <li><a href="#agents" class="footer-link">Our Agents</a></li>
-                        <li><a href="#about" class="footer-link">About Us</a></li>
-                        <li><a href="/admin" class="footer-link">Admin Panel</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h4>Categories</h4>
-                    <ul>
-                        <li>Electronic Components</li>
-                        <li>Digital Products</li>
-                        <li>Learning Materials</li>
-                        <li>Starter Kits</li>
+                        <li><a href="#agents" class="footer-link">Agents</a></li>
+                        <li><a href="/admin" class="footer-link">Admin</a></li>
                     </ul>
                 </div>
                 
@@ -1666,44 +1351,38 @@
                     <h4>Contact</h4>
                     <ul>
                         <li><i class="fas fa-map-marker-alt"></i> Bauchi, Nigeria</li>
-                        <li><i class="fas fa-phone"></i> +234 8167683032</li>
+                        <li><i class="fas fa-phone"></i> +234 816 768 3032</li>
                         <li><i class="fas fa-envelope"></i> hello@elcira.ng</li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Elcira. Made with <i class="fas fa-heart" style="color: var(--danger);"></i> in Bauchi</p>
+                <p>© 2024 Elcira. Made with <i class="fas fa-heart" style="color: var(--danger);"></i> in Bauchi</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript (EXACTLY THE SAME as original - preserved 100%) -->
+    <!-- JavaScript -->
     <script>
-        // ====== UTILITY FUNCTIONS ======
-        class Utils {
-            static formatPrice(price) {
-                return new Intl.NumberFormat('en-NG', {
-                    style: 'currency',
-                    currency: 'NGN',
-                    minimumFractionDigits: 0,
-                    maximumFractionDigits: 0
-                }).format(price).replace('NGN', '₦');
-            }
+        // ====== UTILITIES ======
+        const Utils = {
+            formatPrice(price) {
+                return '₦' + Number(price).toLocaleString();
+            },
 
-            static validateEmail(email) {
-                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                return re.test(email);
-            }
+            validateEmail(email) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            },
 
-            static sanitizeInput(input) {
+            sanitizeInput(input) {
                 if (!input) return '';
                 const div = document.createElement('div');
                 div.textContent = input;
                 return div.innerHTML;
-            }
+            },
 
-            static showNotification(message, type = 'info', duration = 5000) {
+            showNotification(message, type = 'info', duration = 5000) {
                 const existing = document.querySelector('.notification');
                 if (existing) existing.remove();
 
@@ -1711,69 +1390,31 @@
                 notification.className = `notification ${type}`;
                 notification.innerHTML = `
                     <div class="notification-content">
-                        <span><i class="fas ${type === 'success' ? 'fa-check-circle' : type === 'error' ? 'fa-exclamation-circle' : 'fa-info-circle'}"></i> ${this.sanitizeInput(message)}</span>
+                        <span><i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i> ${message}</span>
                         <button class="notification-close">&times;</button>
                     </div>
                 `;
 
                 document.body.appendChild(notification);
 
-                const autoRemove = setTimeout(() => {
-                    notification.remove();
-                }, duration);
+                const autoRemove = setTimeout(() => notification.remove(), duration);
 
                 notification.querySelector('.notification-close').addEventListener('click', () => {
                     clearTimeout(autoRemove);
                     notification.remove();
                 });
             }
-        }
-
-        // ====== EMAIL SERVICE ======
-        class EmailService {
-            async sendPurchaseNotification(product, customerData) {
-                try {
-                    console.log('📨 Sending purchase notification...', {
-                        product: product.name,
-                        customer: customerData.email
-                    });
-
-                    const response = await fetch('/api/send-notification', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            product: product,
-                            customerData: customerData
-                        })
-                    });
-
-                    const result = await response.json();
-                    
-                    if (!response.ok) {
-                        throw new Error(result.error || 'Failed to send notification');
-                    }
-                    
-                    console.log('✅ Server response:', result);
-                    return result.success === true;
-                } catch (error) {
-                    console.error('❌ Email failed:', error);
-                    Utils.showNotification(`Failed to send notification: ${error.message}`, 'error');
-                    return false;
-                }
-            }
-        }
+        };
 
         // ====== MAIN APP ======
-        class EcommerceApp {
+        class ElciraApp {
             constructor() {
                 this.products = [];
                 this.agents = [];
                 this.filteredProducts = [];
                 this.currentCategory = 'all';
                 this.selectedProduct = null;
-                this.emailService = new EmailService();
+                this.currentImageIndex = 0;
                 
                 this.init();
             }
@@ -1788,57 +1429,25 @@
 
             async loadProducts() {
                 try {
-                    console.log('📦 Loading products...');
                     const response = await fetch('/api/products');
-                    
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}`);
-                    }
-                    
                     const data = await response.json();
                     
                     if (data.success && Array.isArray(data.products)) {
                         this.products = data.products;
                         this.filteredProducts = [...this.products];
                         this.renderProducts();
-                        console.log(`✅ Loaded ${this.products.length} products`);
+                    } else {
+                        throw new Error('Invalid data');
                     }
                 } catch (error) {
-                    console.error('❌ Failed to load products:', error);
-                    this.showProductError();
+                    console.error('Failed to load products:', error);
+                    this.showError('products');
                 }
             }
 
             async loadAgents() {
                 try {
-                    console.log('👥 Loading agents...');
                     const response = await fetch('/api/agents');
-                    
-                    if (!response.ok) {
-                        throw new Error(`HTTP ${response.status}`);
-                    }
-                    
-                    const data = await response.json();
-                    
-                    if (data.success && Array.isArray(data.agents)) {
-                        this.agents = data.agents;
-                        this.renderAgents();
-                        console.log(`✅ Loaded ${this.agents.length} agents`);
-                    } else {
-                        await this.loadDefaultAgents();
-                    }
-                } catch (error) {
-                    console.error('❌ Failed to load agents:', error);
-                    this.renderAgents([]);
-                }
-            }
-
-            async loadDefaultAgents() {
-                try {
-                    const response = await fetch('/api/agents/init', {
-                        method: 'POST'
-                    });
-                    
                     const data = await response.json();
                     
                     if (data.success && Array.isArray(data.agents)) {
@@ -1846,31 +1455,40 @@
                         this.renderAgents();
                     }
                 } catch (error) {
-                    console.error('Failed to load default agents:', error);
+                    console.error('Failed to load agents:', error);
                 }
             }
 
-            showProductError() {
-                const productsGrid = document.getElementById('productsGrid');
-                productsGrid.innerHTML = `
-                    <div class="error-state" style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 4rem; color: var(--warning); margin-bottom: 1rem;"></i>
-                        <h3 style="margin-bottom: 1rem;">Unable to Load Products</h3>
-                        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Please check your connection and try again</p>
-                        <button onclick="window.location.reload()" class="btn primary">
-                            <i class="fas fa-sync-alt"></i> Refresh Page
+            showError(type) {
+                const grid = document.getElementById(type + 'Grid');
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                        <i class="fas fa-exclamation-triangle" style="font-size: 3rem; color: var(--warning);"></i>
+                        <h3>Unable to Load</h3>
+                        <button onclick="location.reload()" class="btn primary" style="margin-top: 1rem;">
+                            <i class="fas fa-sync-alt"></i> Retry
                         </button>
                     </div>
                 `;
             }
 
             setupEventListeners() {
+                // Category tabs
                 document.querySelectorAll('.tab-btn').forEach(btn => {
                     btn.addEventListener('click', (e) => {
                         this.handleCategoryChange(e.target.dataset.category);
                     });
                 });
 
+                // Product modal
+                document.getElementById('closeProductModal').addEventListener('click', () => this.closeProductModal());
+                document.getElementById('productModal').addEventListener('click', (e) => {
+                    if (e.target === document.getElementById('productModal')) {
+                        this.closeProductModal();
+                    }
+                });
+
+                // Checkout modal
                 document.getElementById('closeModal').addEventListener('click', () => this.closeCheckoutModal());
                 document.getElementById('cancelBtn').addEventListener('click', () => this.closeCheckoutModal());
                 document.getElementById('checkoutModal').addEventListener('click', (e) => {
@@ -1879,32 +1497,33 @@
                     }
                 });
 
-                document.getElementById('checkoutForm').addEventListener('submit', (e) => this.handleCheckoutSubmit(e));
+                // Checkout form
+                document.getElementById('checkoutForm').addEventListener('submit', (e) => this.handleCheckout(e));
 
+                // Validation
                 document.getElementById('customerName').addEventListener('input', (e) => this.validateName(e.target.value));
                 document.getElementById('customerEmail').addEventListener('input', (e) => this.validateEmail(e.target.value));
 
+                // Escape key
                 document.addEventListener('keydown', (e) => {
-                    if (e.key === 'Escape') this.closeCheckoutModal();
+                    if (e.key === 'Escape') {
+                        this.closeProductModal();
+                        this.closeCheckoutModal();
+                    }
                 });
             }
 
             handleCategoryChange(category) {
                 document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                    if (btn.dataset.category === category) btn.classList.add('active');
+                    btn.classList.toggle('active', btn.dataset.category === category);
                 });
 
                 this.currentCategory = category;
-                
-                if (category === 'all') {
-                    this.filteredProducts = [...this.products];
-                } else {
-                    this.filteredProducts = this.products.filter(p => p.category === category);
-                }
+                this.filteredProducts = category === 'all' 
+                    ? [...this.products]
+                    : this.products.filter(p => p.category === category);
 
                 this.renderProducts();
-                document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
             }
 
             renderProducts() {
@@ -1912,13 +1531,9 @@
                 
                 if (this.filteredProducts.length === 0) {
                     grid.innerHTML = `
-                        <div class="empty-state" style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-                            <i class="fas fa-box-open" style="font-size: 4rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
+                        <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                            <i class="fas fa-box-open" style="font-size: 3rem; color: var(--text-muted);"></i>
                             <h3>No products found</h3>
-                            <p style="color: var(--text-secondary);">Try a different category</p>
-                            <button onclick="app.handleCategoryChange('all')" class="btn secondary" style="margin-top: 1rem;">
-                                View All Products
-                            </button>
                         </div>
                     `;
                     return;
@@ -1929,54 +1544,25 @@
                                       product.stock > 0 ? 'low-stock' : 'out-of-stock';
                     const stockText = product.stock > 10 ? 'In Stock' : 
                                      product.stock > 0 ? `Only ${product.stock} left` : 'Out of Stock';
-                    const categoryClass = product.category.toLowerCase().replace(/\s+/g, '-');
+                    const imageUrl = product.images && product.images.length > 0 ? product.images[0] : (product.image_url || '');
 
                     return `
-                        <div class="product-card" data-id="${product.id}">
+                        <div class="product-card" onclick="app.showProductDetails(${product.id})">
                             <div class="product-image-wrapper">
-                                <img src="${product.image_url}" 
-                                     alt="${Utils.sanitizeInput(product.name)}"
-                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9IiMxNDE0MWYiPjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIi8+PHRleHQgeD0iMjAwIiB5PSIxNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiI+Tm8gSW1hZ2U8L3RleHQ+PC9zdmc+'">
-                                ${product.stock < 5 && product.stock > 0 ? '<span class="product-badge">🔥 Limited Stock</span>' : ''}
+                                <img src="${imageUrl}" alt="${Utils.sanitizeInput(product.name)}"
+                                     onerror="this.src='https://via.placeholder.com/400?text=Elcira'">
+                                ${product.stock < 5 && product.stock > 0 ? '<span class="product-badge">🔥 Limited</span>' : ''}
                             </div>
                             <div class="product-card-content">
                                 <h3>${Utils.sanitizeInput(product.name)}</h3>
-                                <p class="product-description">
-                                    ${Utils.sanitizeInput(product.description || 'Premium quality product from Elcira')}
-                                </p>
                                 <div class="product-meta">
-                                    <span class="category-badge">
-                                        <i class="fas ${product.category === 'Electronic Components' ? 'fa-microchip' : product.category === 'Digital Products' ? 'fa-download' : 'fa-graduation-cap'}"></i>
-                                        ${Utils.sanitizeInput(product.category)}
-                                    </span>
-                                    <span class="product-stock ${stockClass}">
-                                        <i class="fas ${stockClass === 'in-stock' ? 'fa-check-circle' : stockClass === 'low-stock' ? 'fa-exclamation-circle' : 'fa-times-circle'}"></i>
-                                        ${stockText}
-                                    </span>
+                                    <span class="category-badge">${Utils.sanitizeInput(product.category)}</span>
+                                    <span class="product-stock ${stockClass}">${stockText}</span>
                                 </div>
-                                <div class="product-price">
-                                    <span class="naira">₦</span>${product.price.toLocaleString()}
-                                </div>
-                                <div class="product-actions">
-                                    ${product.category === 'Learning Materials' && product.file_url ? `
-                                        <a href="${product.file_url}" 
-                                           target="_blank" 
-                                           class="btn secondary">
-                                            <i class="fas fa-eye"></i> Preview
-                                        </a>
-                                        <button onclick="app.startPurchase(${product.id})" 
-                                                class="btn primary"
-                                                ${product.stock === 0 ? 'disabled' : ''}>
-                                            <i class="fas fa-bolt"></i> Buy
-                                        </button>
-                                    ` : `
-                                        <button onclick="app.startPurchase(${product.id})" 
-                                                class="btn primary"
-                                                ${product.stock === 0 ? 'disabled' : ''}>
-                                            <i class="fas fa-bolt"></i> Buy
-                                        </button>
-                                    `}
-                                </div>
+                                <div class="product-price">${Utils.formatPrice(product.price)}</div>
+                                <button class="view-details-btn" onclick="event.stopPropagation(); app.showProductDetails(${product.id})">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
                             </div>
                         </div>
                     `;
@@ -1986,92 +1572,140 @@
             renderAgents() {
                 const grid = document.getElementById('agentsGrid');
                 
-                if (!this.agents || this.agents.length === 0) {
-                    grid.innerHTML = `
-                        <div style="grid-column: 1/-1; text-align: center; padding: 3rem;">
-                            <i class="fas fa-users" style="font-size: 4rem; color: var(--text-muted); margin-bottom: 1rem;"></i>
-                            <h3>Our Agents Are Loading...</h3>
-                            <p style="color: var(--text-secondary);">Please wait while we connect you to our team</p>
-                        </div>
-                    `;
+                if (!this.agents?.length) {
+                    grid.innerHTML = '<div class="loading"><p>Loading agents...</p></div>';
                     return;
                 }
 
                 grid.innerHTML = this.agents.map(agent => `
                     <div class="agent-card">
                         <div class="agent-image-wrapper">
-                            <img src="${agent.image_url || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop'}" 
-                                 alt="${Utils.sanitizeInput(agent.name)}"
+                            <img src="${agent.image_url}" alt="${Utils.sanitizeInput(agent.name)}"
                                  class="agent-image"
                                  onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&h=400&fit=crop'">
                         </div>
                         <h3 class="agent-name">${Utils.sanitizeInput(agent.name)}</h3>
                         <p class="agent-role">${Utils.sanitizeInput(agent.role)}</p>
                         <div class="agent-location">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>${Utils.sanitizeInput(agent.location)}</span>
+                            <i class="fas fa-map-marker-alt"></i> ${Utils.sanitizeInput(agent.location)}
                         </div>
-                        <p style="color: var(--text-muted); margin-bottom: 1rem;">
-                            <i class="fas fa-phone"></i> ${agent.phone || '+234 800 000 0000'}
-                        </p>
-                        <p style="color: var(--text-secondary); font-size: 0.9rem;">
-                            <i class="fas fa-star" style="color: var(--warning);"></i> 
-                            <i class="fas fa-star" style="color: var(--warning);"></i> 
-                            <i class="fas fa-star" style="color: var(--warning);"></i> 
-                            <i class="fas fa-star" style="color: var(--warning);"></i> 
-                            <i class="fas fa-star-half-alt" style="color: var(--warning);"></i>
-                            <span style="margin-left: 0.5rem;">4.8 (120+ reviews)</span>
-                        </p>
+                        <p style="font-size: 0.9rem;">📞 ${agent.phone}</p>
                         <div class="agent-contact">
                             <a href="tel:${agent.phone}"><i class="fas fa-phone"></i></a>
-                            <a href="mailto:${agent.email || 'agent@elcira.ng'}"><i class="fas fa-envelope"></i></a>
+                            <a href="mailto:${agent.email}"><i class="fas fa-envelope"></i></a>
                             <a href="#"><i class="fab fa-whatsapp"></i></a>
                         </div>
                     </div>
                 `).join('');
             }
 
-            startPurchase(productId) {
+            async showProductDetails(productId) {
                 const product = this.products.find(p => p.id == productId);
-                if (!product) {
-                    Utils.showNotification('Product not found', 'error');
-                    return;
+                if (!product) return;
+
+                this.selectedProduct = product;
+                this.currentImageIndex = 0;
+
+                const modal = document.getElementById('productModal');
+                const body = document.getElementById('productModalBody');
+                const title = document.getElementById('modalProductTitle');
+                
+                title.textContent = product.name;
+                
+                const images = product.images && product.images.length > 0 ? product.images : [product.image_url || ''];
+                const stockClass = product.stock > 10 ? 'in-stock' : product.stock > 0 ? 'low-stock' : 'out-of-stock';
+                const stockText = product.stock > 10 ? 'In Stock' : product.stock > 0 ? `Only ${product.stock} left` : 'Out of Stock';
+
+                body.innerHTML = `
+                    <div class="image-gallery">
+                        <div class="main-image" id="mainImage">
+                            <img src="${images[0]}" alt="${product.name}" onerror="this.src='https://via.placeholder.com/800?text=Elcira'">
+                        </div>
+                        ${images.length > 1 ? `
+                            <div class="thumbnail-grid">
+                                ${images.map((img, index) => `
+                                    <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="app.setMainImage(${index})">
+                                        <img src="${img}" alt="Thumbnail ${index + 1}" onerror="this.src='https://via.placeholder.com/200?text=Elcira'">
+                                    </div>
+                                `).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                    
+                    <div class="product-info">
+                        <span class="category-tag">${Utils.sanitizeInput(product.category)}</span>
+                        <div class="price-large">${Utils.formatPrice(product.price)}</div>
+                        
+                        <div class="stock-info">
+                            <span class="stock-badge ${stockClass}">${stockText}</span>
+                            <span><i class="fas fa-box"></i> ${product.stock} units available</span>
+                        </div>
+                        
+                        <div class="description-full">
+                            ${Utils.sanitizeInput(product.full_description || product.description || 'No description available')}
+                        </div>
+                        
+                        <div class="product-actions-modal">
+                            <button class="btn primary" onclick="app.startPurchase(${product.id})" ${product.stock === 0 ? 'disabled' : ''}>
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                            <button class="btn secondary" onclick="app.closeProductModal()">
+                                <i class="fas fa-times"></i> Close
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            setMainImage(index) {
+                this.currentImageIndex = index;
+                const mainImage = document.getElementById('mainImage');
+                const images = this.selectedProduct.images && this.selectedProduct.images.length > 0 
+                    ? this.selectedProduct.images 
+                    : [this.selectedProduct.image_url || ''];
+                
+                if (mainImage) {
+                    mainImage.innerHTML = `<img src="${images[index]}" alt="${this.selectedProduct.name}" onerror="this.src='https://via.placeholder.com/800?text=Elcira'">`;
                 }
 
-                if (product.stock === 0) {
-                    Utils.showNotification('This product is out of stock', 'warning');
-                    return;
-                }
+                // Update active thumbnail
+                document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
+                    if (i === index) {
+                        thumb.classList.add('active');
+                    } else {
+                        thumb.classList.remove('active');
+                    }
+                });
+            }
+
+            closeProductModal() {
+                document.getElementById('productModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                this.selectedProduct = null;
+            }
+
+            startPurchase(productId) {
+                const product = this.products.find(p => p.id == productId);
+                if (!product) return Utils.showNotification('Product not found', 'error');
+                if (product.stock === 0) return Utils.showNotification('Out of stock', 'warning');
 
                 this.selectedProduct = product;
                 this.showCheckoutModal(product);
+                this.closeProductModal(); // Close product modal if open
             }
 
             showCheckoutModal(product) {
                 const modal = document.getElementById('checkoutModal');
-                const orderSummary = document.getElementById('orderSummary');
+                const summary = document.getElementById('orderSummary');
                 const productIdInput = document.getElementById('selectedProductId');
 
-                orderSummary.innerHTML = `
-                    <div class="summary-item">
-                        <span>Product:</span>
-                        <strong>${Utils.sanitizeInput(product.name)}</strong>
-                    </div>
-                    <div class="summary-item">
-                        <span>Category:</span>
-                        <span>${Utils.sanitizeInput(product.category)}</span>
-                    </div>
-                    <div class="summary-item">
-                        <span>Price:</span>
-                        <span>${Utils.formatPrice(product.price)}</span>
-                    </div>
-                    <div class="summary-item total">
-                        <span>Total:</span>
-                        <span>${Utils.formatPrice(product.price)}</span>
-                    </div>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-muted);">
-                        <i class="fas fa-lock"></i> Secure payment processing
-                    </p>
+                summary.innerHTML = `
+                    <div class="summary-item"><span>Product:</span> <strong>${Utils.sanitizeInput(product.name)}</strong></div>
+                    <div class="summary-item"><span>Price:</span> ${Utils.formatPrice(product.price)}</div>
+                    <div class="summary-item total"><span>Total:</span> ${Utils.formatPrice(product.price)}</div>
                 `;
 
                 productIdInput.value = product.id;
@@ -2085,91 +1719,79 @@
             }
 
             closeCheckoutModal() {
-                const modal = document.getElementById('checkoutModal');
-                modal.style.display = 'none';
+                document.getElementById('checkoutModal').style.display = 'none';
                 document.body.style.overflow = 'auto';
-                this.selectedProduct = null;
             }
 
             validateName(name) {
-                const errorElement = document.getElementById('nameError');
-                if (name.length < 2) {
-                    errorElement.textContent = 'Name must be at least 2 characters';
-                    return false;
-                }
-                errorElement.textContent = '';
-                return true;
+                const error = document.getElementById('nameError');
+                const isValid = name.length >= 2;
+                error.textContent = isValid ? '' : 'Name must be at least 2 characters';
+                return isValid;
             }
 
             validateEmail(email) {
-                const errorElement = document.getElementById('emailError');
-                if (!Utils.validateEmail(email)) {
-                    errorElement.textContent = 'Please enter a valid email';
-                    return false;
-                }
-                errorElement.textContent = '';
-                return true;
+                const error = document.getElementById('emailError');
+                const isValid = Utils.validateEmail(email);
+                error.textContent = isValid ? '' : 'Enter a valid email';
+                return isValid;
             }
 
-            async handleCheckoutSubmit(e) {
+            async handleCheckout(e) {
                 e.preventDefault();
                 
                 const form = e.target;
                 const submitBtn = form.querySelector('#submitBtn');
                 const spinner = form.querySelector('#submitSpinner');
                 
-                const formData = new FormData(form);
                 const customerData = {
-                    name: formData.get('customerName').trim(),
-                    email: formData.get('customerEmail').trim(),
-                    phone: formData.get('customerPhone')?.trim() || '',
-                    productId: parseInt(formData.get('productId'))
+                    name: form.customerName.value.trim(),
+                    email: form.customerEmail.value.trim(),
+                    phone: form.customerPhone.value.trim() || '',
+                    productId: parseInt(form.productId.value)
                 };
 
-                const isNameValid = this.validateName(customerData.name);
-                const isEmailValid = this.validateEmail(customerData.email);
-
-                if (!isNameValid || !isEmailValid) {
-                    Utils.showNotification('Please fix form errors', 'error');
-                    return;
+                if (!this.validateName(customerData.name) || !this.validateEmail(customerData.email)) {
+                    return Utils.showNotification('Please fix form errors', 'error');
                 }
 
-                const product = this.products.find(p => p.id == customerData.productId);
-                if (!product) {
-                    Utils.showNotification('Product not found', 'error');
-                    return;
-                }
+                const product = this.products.find(p => p.id === customerData.productId);
+                if (!product) return Utils.showNotification('Product not found', 'error');
 
                 submitBtn.disabled = true;
                 spinner.classList.remove('hidden');
-                submitBtn.querySelector('.btn-text').innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                submitBtn.querySelector('.btn-text').textContent = 'Processing...';
 
                 try {
-                    const emailSent = await this.emailService.sendPurchaseNotification(product, customerData);
+                    const response = await fetch('/api/send-notification', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ product, customerData })
+                    });
+
+                    const result = await response.json();
                     
-                    if (emailSent) {
-                        Utils.showNotification('✅ Order placed! Redirecting to payment...', 'success');
-                        
+                    if (result.success) {
+                        Utils.showNotification('Order received! Redirecting...', 'success');
                         setTimeout(() => {
                             window.location.href = product.payment_link;
                         }, 1500);
                     } else {
-                        throw new Error('Failed to send notification');
+                        throw new Error(result.error || 'Failed to process order');
                     }
                 } catch (error) {
-                    console.error('❌ Checkout error:', error);
-                    Utils.showNotification(`Error: ${error.message}`, 'error');
+                    Utils.showNotification('Error: ' + error.message, 'error');
                 } finally {
                     submitBtn.disabled = false;
                     spinner.classList.add('hidden');
-                    submitBtn.querySelector('.btn-text').innerHTML = '<i class="fas fa-credit-card"></i> Proceed';
+                    submitBtn.querySelector('.btn-text').textContent = 'Proceed to Payment';
                 }
             }
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            window.app = new EcommerceApp();
-        });
+        // Initialize
+        const app = new ElciraApp();
+        window.app = app;
     </script>
 </body>
 </html>

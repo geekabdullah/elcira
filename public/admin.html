@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circuit Express ⚡ - Admin Dashboard</title>
+    <title>Elcira ⚡ - Admin Dashboard</title>
     
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -386,6 +386,97 @@
             box-shadow: 0 0 0 3px var(--primary-glow);
         }
 
+        /* NEW: Image Upload Styles */
+        .image-upload-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .image-upload-box {
+            background: var(--bg-dark);
+            border: 2px dashed var(--glass-border);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            aspect-ratio: 1/1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-upload-box:hover {
+            border-color: var(--primary);
+            background: var(--glass-bg);
+        }
+
+        .image-upload-box.has-image {
+            border-style: solid;
+            border-color: var(--primary);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .image-upload-box.has-image .upload-icon,
+        .image-upload-box.has-image .upload-text {
+            display: none;
+        }
+
+        .image-upload-box .upload-icon {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .image-upload-box .upload-text {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        .image-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--radius-sm);
+        }
+
+        .remove-image {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: var(--danger);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .remove-image:hover {
+            transform: scale(1.1);
+            background: var(--secondary);
+        }
+
+        .image-note {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
         .form-actions {
             display: flex;
             gap: 1rem;
@@ -504,7 +595,7 @@
 
         .stock-badge.none {
             background: rgba(255, 51, 102, 0.2);
-            color: var-danger);
+            color: var(--danger);
         }
 
         .action-btns {
@@ -636,6 +727,10 @@
             .products-table {
                 font-size: 0.9rem;
             }
+
+            .image-upload-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -647,7 +742,7 @@
                 <div class="login-icon">
                     <i class="fas fa-crown"></i>
                 </div>
-                <h1>Circuit Express</h1>
+                <h1>Elcira</h1>
                 <p style="color: var(--text-secondary);">Admin Dashboard</p>
             </div>
             <form class="login-form" id="loginForm">
@@ -676,7 +771,7 @@
             <div class="container">
                 <h1>
                     <i class="fas fa-bolt" style="color: var(--primary);"></i>
-                    Circuit Express
+                    Elcira
                     <span>Admin</span>
                 </h1>
                 <div class="admin-nav">
@@ -745,7 +840,7 @@
                 <!-- Products Tab -->
                 <div id="productsTab" class="tab-content active">
                     <div class="admin-grid">
-                        <!-- Add/Edit Product Form -->
+                        <!-- Add/Edit Product Form with Image Upload -->
                         <div class="admin-section">
                             <h2 class="section-title">
                                 <i class="fas fa-plus-circle"></i>
@@ -779,10 +874,38 @@
                                     <input type="number" id="productStock" min="0" placeholder="e.g., 50" required>
                                 </div>
 
+                                <!-- NEW: 3 Image Upload Section -->
                                 <div class="form-row">
-                                    <label for="productImage">Image URL</label>
-                                    <input type="url" id="productImage" placeholder="https://images.unsplash.com/..." required>
+                                    <label>Product Images (Upload up to 3 images)</label>
+                                    <div class="image-upload-grid" id="imageUploadGrid">
+                                        <!-- Image 1 -->
+                                        <div class="image-upload-box" id="imageBox1" onclick="document.getElementById('fileInput1').click()">
+                                            <input type="file" id="fileInput1" accept="image/*" style="display: none;" onchange="admin.handleImageUpload(event, 1)">
+                                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                            <span class="upload-text">Click to upload<br>Image 1</span>
+                                        </div>
+                                        <!-- Image 2 -->
+                                        <div class="image-upload-box" id="imageBox2" onclick="document.getElementById('fileInput2').click()">
+                                            <input type="file" id="fileInput2" accept="image/*" style="display: none;" onchange="admin.handleImageUpload(event, 2)">
+                                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                            <span class="upload-text">Click to upload<br>Image 2</span>
+                                        </div>
+                                        <!-- Image 3 -->
+                                        <div class="image-upload-box" id="imageBox3" onclick="document.getElementById('fileInput3').click()">
+                                            <input type="file" id="fileInput3" accept="image/*" style="display: none;" onchange="admin.handleImageUpload(event, 3)">
+                                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                            <span class="upload-text">Click to upload<br>Image 3</span>
+                                        </div>
+                                    </div>
+                                    <div class="image-note">
+                                        <i class="fas fa-info-circle"></i> First image will be the main product image. Maximum 3 images.
+                                    </div>
                                 </div>
+
+                                <!-- Hidden inputs to store base64 images -->
+                                <input type="hidden" id="productImage1" name="image1">
+                                <input type="hidden" id="productImage2" name="image2">
+                                <input type="hidden" id="productImage3" name="image3">
 
                                 <div class="form-row">
                                     <label for="productPaymentLink">Payment Link</label>
@@ -796,8 +919,13 @@
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="productDescription">Description</label>
-                                    <textarea id="productDescription" placeholder="Product description..." required></textarea>
+                                    <label for="productDescription">Short Description</label>
+                                    <textarea id="productDescription" placeholder="Brief product description..." required></textarea>
+                                </div>
+
+                                <div class="form-row">
+                                    <label for="productFullDescription">Full Description</label>
+                                    <textarea id="productFullDescription" placeholder="Detailed product description..." rows="4" required></textarea>
                                 </div>
 
                                 <div class="form-actions">
@@ -840,6 +968,7 @@
                                             <th>Category</th>
                                             <th>Price (₦)</th>
                                             <th>Stock</th>
+                                            <th>Images</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -865,17 +994,17 @@
                                 
                                 <div class="form-row">
                                     <label for="agentName">Agent Name</label>
-                                    <input type="text" id="agentName" placeholder="e.g., John Okonkwo" required>
+                                    <input type="text" id="agentName" placeholder="e.g., Chidi Okonkwo" required>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="agentRole">Role / Title</label>
-                                    <input type="text" id="agentRole" placeholder="e.g., Senior Sales Agent" required>
+                                    <input type="text" id="agentRole" placeholder="e.g., Senior Technical Agent" required>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="agentLocation">Location / City</label>
-                                    <input type="text" id="agentLocation" placeholder="e.g., Lagos" required>
+                                    <label for="agentLocation">Location / Campus</label>
+                                    <input type="text" id="agentLocation" placeholder="e.g., Bauchi (ATBU Yelwa)" required>
                                 </div>
 
                                 <div class="form-row">
@@ -885,16 +1014,17 @@
 
                                 <div class="form-row">
                                     <label for="agentEmail">Email</label>
-                                    <input type="email" id="agentEmail" placeholder="agent@circuitexpress.ng" required>
+                                    <input type="email" id="agentEmail" placeholder="agent@elcira.ng" required>
                                 </div>
 
                                 <div class="form-row">
                                     <label for="agentImage">Profile Image URL</label>
                                     <input type="url" id="agentImage" placeholder="https://images.unsplash.com/..." required>
+                                    <small style="color: var(--text-muted);">For now, use image URLs for agents</small>
                                 </div>
 
                                 <div class="form-row">
-                                    <label for="agentBio">Short Bio</label>
+                                    <label for="agentBio">Bio / Description</label>
                                     <textarea id="agentBio" placeholder="Expert in electronics and customer support..." required></textarea>
                                 </div>
 
@@ -968,6 +1098,14 @@
                 this.isAuthenticated = false;
                 this.editingProductId = null;
                 this.editingAgentId = null;
+                
+                // Store uploaded images as base64
+                this.uploadedImages = {
+                    1: null,
+                    2: null,
+                    3: null
+                };
+                
                 this.init();
             }
 
@@ -989,8 +1127,81 @@
                 });
             }
 
+            // NEW: Handle image upload and convert to base64
+            handleImageUpload(event, imageIndex) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                // Check file size (max 5MB per image)
+                if (file.size > 5 * 1024 * 1024) {
+                    this.showNotification('Image must be less than 5MB', 'error');
+                    return;
+                }
+
+                // Check file type
+                if (!file.type.startsWith('image/')) {
+                    this.showNotification('Please upload an image file', 'error');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const base64Image = e.target.result;
+                    this.uploadedImages[imageIndex] = base64Image;
+                    
+                    // Update the hidden input
+                    document.getElementById(`productImage${imageIndex}`).value = base64Image;
+                    
+                    // Update the UI
+                    const box = document.getElementById(`imageBox${imageIndex}`);
+                    box.innerHTML = `
+                        <img src="${base64Image}" class="image-preview" alt="Uploaded image ${imageIndex}">
+                        <button type="button" class="remove-image" onclick="admin.removeImage(${imageIndex})">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    box.classList.add('has-image');
+                };
+                reader.readAsDataURL(file);
+            }
+
+            // NEW: Remove uploaded image
+            removeImage(imageIndex) {
+                this.uploadedImages[imageIndex] = null;
+                document.getElementById(`productImage${imageIndex}`).value = '';
+                
+                const box = document.getElementById(`imageBox${imageIndex}`);
+                box.innerHTML = `
+                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                    <span class="upload-text">Click to upload<br>Image ${imageIndex}</span>
+                    <input type="file" id="fileInput${imageIndex}" accept="image/*" style="display: none;" onchange="admin.handleImageUpload(event, ${imageIndex})">
+                `;
+                box.classList.remove('has-image');
+                
+                // Reattach click handler
+                box.onclick = () => document.getElementById(`fileInput${imageIndex}`).click();
+            }
+
+            // NEW: Reset image upload section
+            resetImageUploads() {
+                for (let i = 1; i <= 3; i++) {
+                    this.uploadedImages[i] = null;
+                    const box = document.getElementById(`imageBox${i}`);
+                    if (box) {
+                        box.innerHTML = `
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <span class="upload-text">Click to upload<br>Image ${i}</span>
+                            <input type="file" id="fileInput${i}" accept="image/*" style="display: none;" onchange="admin.handleImageUpload(event, ${i})">
+                        `;
+                        box.classList.remove('has-image');
+                        box.onclick = () => document.getElementById(`fileInput${i}`).click();
+                    }
+                    document.getElementById(`productImage${i}`).value = '';
+                }
+            }
+
             checkAuth() {
-                const session = sessionStorage.getItem('circuitExpressAuth');
+                const session = sessionStorage.getItem('elciraAuth');
                 if (session === 'true') {
                     this.isAuthenticated = true;
                     this.showAdminPanel();
@@ -1031,7 +1242,7 @@
                     
                     if (data.success) {
                         this.isAuthenticated = true;
-                        sessionStorage.setItem('circuitExpressAuth', 'true');
+                        sessionStorage.setItem('elciraAuth', 'true');
                         this.showAdminPanel();
                         this.loadProducts();
                         this.loadAgents();
@@ -1051,7 +1262,7 @@
 
             logout() {
                 this.isAuthenticated = false;
-                sessionStorage.removeItem('circuitExpressAuth');
+                sessionStorage.removeItem('elciraAuth');
                 document.getElementById('loginContainer').style.display = 'flex';
                 document.getElementById('adminContainer').style.display = 'none';
                 document.getElementById('password').value = '';
@@ -1132,7 +1343,7 @@
                 if (filtered.length === 0) {
                     tbody.innerHTML = `
                         <tr>
-                            <td colspan="6" style="text-align: center; padding: 2rem;">
+                            <td colspan="7" style="text-align: center; padding: 2rem;">
                                 <i class="fas fa-box-open" style="font-size: 2rem; color: var(--text-muted); margin-bottom: 1rem; display: block;"></i>
                                 No products found
                             </td>
@@ -1146,13 +1357,19 @@
                     const stockText = product.stock > 10 ? 'In Stock' : 
                                     product.stock > 0 ? `Low (${product.stock})` : 'Out of Stock';
                     
+                    // Get first image or placeholder
+                    const mainImage = product.images && product.images.length > 0 
+                        ? product.images[0] 
+                        : (product.image_url || 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0iIzE0MTQxZiI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIi8+PHRleHQgeD0iMjUiIHk9IjI1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiPk5vIEltZzwvdGV4dD48L3N2Zz4=');
+                    
+                    const imageCount = product.images ? product.images.length : (product.image_url ? 1 : 0);
+                    
                     return `
                         <tr>
                             <td>
-                                <img src="${this.escapeHtml(product.image_url)}" 
+                                <img src="${this.escapeHtml(mainImage)}" 
                                      alt="${this.escapeHtml(product.name)}"
-                                     class="product-thumb"
-                                     onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCA1MCA1MCIgZmlsbD0iIzE0MTQxZiI+PHJlY3Qgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIi8+PHRleHQgeD0iMjUiIHk9IjI1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiPk5vIEltZzwvdGV4dD48L3N2Zz4='">
+                                     class="product-thumb">
                             </td>
                             <td>${this.escapeHtml(product.name)}</td>
                             <td>${this.escapeHtml(product.category)}</td>
@@ -1160,6 +1377,11 @@
                             <td>
                                 <span class="stock-badge ${stockClass}">
                                     ${stockText}
+                                </span>
+                            </td>
+                            <td>
+                                <span class="image-count-badge">
+                                    ${imageCount}/3 <i class="fas fa-image"></i>
                                 </span>
                             </td>
                             <td>
@@ -1270,10 +1492,44 @@
                 document.getElementById('productCategory').value = product.category || '';
                 document.getElementById('productPrice').value = product.price || '';
                 document.getElementById('productStock').value = product.stock || 0;
-                document.getElementById('productImage').value = product.image_url || '';
                 document.getElementById('productPaymentLink').value = product.payment_link || '';
                 document.getElementById('productFileUrl').value = product.file_url || '';
                 document.getElementById('productDescription').value = product.description || '';
+                document.getElementById('productFullDescription').value = product.full_description || product.description || '';
+                
+                // Load existing images
+                this.resetImageUploads();
+                if (product.images && product.images.length > 0) {
+                    product.images.forEach((img, index) => {
+                        if (index < 3) {
+                            const i = index + 1;
+                            this.uploadedImages[i] = img;
+                            document.getElementById(`productImage${i}`).value = img;
+                            
+                            const box = document.getElementById(`imageBox${i}`);
+                            box.innerHTML = `
+                                <img src="${img}" class="image-preview" alt="Product image ${i}">
+                                <button type="button" class="remove-image" onclick="admin.removeImage(${i})">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            `;
+                            box.classList.add('has-image');
+                        }
+                    });
+                } else if (product.image_url) {
+                    // Legacy support for single image
+                    this.uploadedImages[1] = product.image_url;
+                    document.getElementById('productImage1').value = product.image_url;
+                    
+                    const box = document.getElementById('imageBox1');
+                    box.innerHTML = `
+                        <img src="${product.image_url}" class="image-preview" alt="Product image 1">
+                        <button type="button" class="remove-image" onclick="admin.removeImage(1)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    `;
+                    box.classList.add('has-image');
+                }
                 
                 document.getElementById('cancelEditBtn').classList.remove('hidden');
                 document.getElementById('productsTab').scrollIntoView({ behavior: 'smooth' });
@@ -1284,6 +1540,7 @@
                 document.getElementById('productFormTitle').textContent = 'Add New Product';
                 document.getElementById('productForm').reset();
                 document.getElementById('productId').value = '';
+                this.resetImageUploads();
                 document.getElementById('cancelEditBtn').classList.add('hidden');
             }
 
@@ -1321,20 +1578,32 @@
                 const saveBtn = document.getElementById('saveBtn');
                 const spinner = document.getElementById('saveSpinner');
                 
+                // Collect images (filter out null values)
+                const images = [1, 2, 3]
+                    .map(i => this.uploadedImages[i])
+                    .filter(img => img !== null);
+                
+                if (images.length === 0) {
+                    this.showNotification('Please upload at least one image', 'error');
+                    return;
+                }
+                
                 const productData = {
                     id: this.editingProductId || Date.now(),
                     name: document.getElementById('productName').value.trim(),
                     category: document.getElementById('productCategory').value,
                     price: parseFloat(document.getElementById('productPrice').value) || 0,
                     stock: parseInt(document.getElementById('productStock').value) || 0,
-                    image_url: document.getElementById('productImage').value.trim(),
+                    images: images,
+                    image_url: images[0], // First image as main
                     payment_link: document.getElementById('productPaymentLink').value.trim(),
                     file_url: document.getElementById('productFileUrl').value.trim() || null,
                     description: document.getElementById('productDescription').value.trim(),
+                    full_description: document.getElementById('productFullDescription').value.trim(),
                     created_at: new Date().toISOString()
                 };
                 
-                if (!productData.name || !productData.category || !productData.price || !productData.image_url || !productData.payment_link) {
+                if (!productData.name || !productData.category || !productData.price || !productData.payment_link) {
                     this.showNotification('Please fill all required fields', 'error');
                     return;
                 }
