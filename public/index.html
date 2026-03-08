@@ -6,10 +6,11 @@
     <title>Elcira ⚡ - Nigeria's Premier Electronics Marketplace</title>
     
     <!-- Fonts & Icons -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Dynamic Favicon (kept original style) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><circle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%2300ff9d%22 stroke=%22%231a1a2e%22 stroke-width=%224%22/><text x=%2250%22 y=%2268%22 font-size=%2260%22 text-anchor=%22middle%22 fill=%22%231a1a2e%22 font-family=%22Arial%22 font-weight=%22bold%22>⚡</text></svg>">
     
     <style>
         /* ====== RESET & VARIABLES ====== */
@@ -17,7 +18,6 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
         }
 
         :root {
@@ -26,47 +26,55 @@
             --primary-glow: rgba(0, 255, 157, 0.4);
             --secondary: #ff3366;
             --accent: #7c3aed;
-            
+
+            /* Dark theme */
             --bg-dark: #0a0a0f;
             --bg-card: #14141f;
             --bg-card-hover: #1a1a2a;
-            --bg-gradient: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
-            
+
+            /* Text */
             --text-primary: #ffffff;
             --text-secondary: rgba(255, 255, 255, 0.7);
             --text-muted: rgba(255, 255, 255, 0.5);
-            
+
+            /* Status */
             --success: #00ff9d;
             --warning: #ff9f1c;
             --danger: #ff3366;
-            
+
+            /* Effects */
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(255, 255, 255, 0.05);
-            
-            --shadow-glow: 0 0 30px var(--primary-glow);
+
+            --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
             --shadow-lg: 0 25px 50px -12px rgba(0, 255, 157, 0.25);
-            
+
             --radius-sm: 8px;
             --radius-md: 16px;
             --radius-lg: 24px;
-            
+            --radius-xl: 32px;
+
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* Mobile-first spacing */
+
+            /* Spacing */
             --mobile-padding: 16px;
             --grid-gap: 12px;
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-gradient);
+            background: var(--bg-dark);
             color: var(--text-primary);
-            line-height: 1.5;
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
+        /* Animated background */
         body::before {
             content: '';
             position: fixed;
@@ -74,16 +82,14 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 255, 157, 0.03) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 51, 102, 0.03) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(0, 255, 157, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(255, 51, 102, 0.05) 0%, transparent 50%);
             pointer-events: none;
             z-index: -1;
         }
 
         .container {
-            width: 100%;
-            max-width: 1440px;
+            max-width: 1280px;
             margin: 0 auto;
             padding: 0 var(--mobile-padding);
         }
@@ -97,19 +103,16 @@
             font-size: 0.9rem;
             cursor: pointer;
             transition: var(--transition);
-            text-decoration: none;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
-            width: 100%;
         }
 
         @media (min-width: 768px) {
             .btn {
-                padding: 0.875rem 2rem;
-                font-size: 0.95rem;
-                width: auto;
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
             }
         }
 
@@ -119,11 +122,23 @@
             box-shadow: 0 0 20px var(--primary-glow);
         }
 
+        .btn.primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px var(--primary-glow);
+        }
+
         .btn.secondary {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--text-primary);
             backdrop-filter: blur(10px);
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .btn.small {
@@ -139,6 +154,7 @@
             -webkit-text-fill-color: transparent;
             margin-bottom: 1.5rem;
             text-align: center;
+            line-height: 1.2;
         }
 
         .section-title::after {
@@ -146,8 +162,8 @@
             display: block;
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            margin: 0.75rem auto 0;
+            background: var(--primary);
+            margin: 1rem auto 0;
             border-radius: 2px;
         }
 
@@ -157,16 +173,17 @@
             top: 0;
             z-index: 1000;
             background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass-border);
             padding: 0.75rem 0;
         }
 
         .header .container {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
         }
 
         @media (min-width: 768px) {
@@ -180,55 +197,43 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            width: 100%;
-            justify-content: center;
         }
 
-        @media (min-width: 768px) {
-            .logo {
-                width: auto;
-                justify-content: flex-start;
-            }
-        }
-
+        /* Logo using Cloudinary image URL */
         .logo-icon {
             width: 44px;
             height: 44px;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 50%;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0NSIgZmlsbD0iIzAwZmY5ZCIgc3Ryb2tlPSIjMWEyYTIwIiBzdHJva2Utd2lkdGg9IjQiLz48dGV4dCB4PSI1MCIgeT0iNjgiIGZvbnQtc2l6ZT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYTFhMjAiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC13ZWlnaHQ9ImJvbGQiPkU8L3RleHQ+PC9zdmc+');
+            background-image: url('https://res.cloudinary.com/dhaspo7qy/image/upload/v1772948396/elcira-logo_zhjagq.png');
             background-size: cover;
             background-position: center;
-            box-shadow: var(--shadow-glow);
-            animation: pulse 2s infinite;
-            flex-shrink: 0;
+            background-repeat: no-repeat;
+        }
+
+        @media (min-width: 768px) {
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+            }
         }
 
         .logo-text h1 {
             font-size: 1.5rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff, var(--primary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--text-primary);
+        }
+
+        .logo-text p {
+            color: var(--text-secondary);
         }
 
         .nav {
             display: flex;
             gap: 0.5rem;
-            align-items: center;
             flex-wrap: wrap;
-            justify-content: center;
-            width: 100%;
-        }
-
-        @media (min-width: 768px) {
-            .nav {
-                width: auto;
-                gap: 1rem;
-            }
         }
 
         .nav-link {
@@ -238,27 +243,26 @@
             padding: 0.6rem 0.9rem;
             border-radius: var(--radius-md);
             transition: var(--transition);
-            font-size: 0.9rem;
-            white-space: nowrap;
+        }
+
+        @media (min-width: 768px) {
+            .nav-link {
+                padding: 0.75rem 1.25rem;
+            }
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
         }
 
         .admin-btn {
             background: linear-gradient(135deg, var(--secondary), var(--accent));
             color: white !important;
-            font-weight: 600;
         }
 
         /* ====== HERO ====== */
         .hero {
-            padding: 2.5rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        @media (min-width: 768px) {
-            .hero {
-                padding: 4rem 0;
-            }
+            padding: 3rem 0;
         }
 
         .hero-content {
@@ -281,40 +285,25 @@
         }
 
         .hero h2 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            line-height: 1.2;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        @media (min-width: 768px) {
-            .hero h2 {
-                font-size: 3.5rem;
-            }
         }
 
         .hero p {
-            font-size: 1rem;
             color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            padding: 0 1rem;
+            margin-bottom: 2rem;
         }
 
         .hero-stats {
             display: flex;
-            gap: 1.5rem;
+            gap: 2rem;
             justify-content: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+            margin-top: 2rem;
         }
 
         .stat-item {
             text-align: center;
-            min-width: 80px;
         }
 
         .stat-value {
@@ -325,8 +314,8 @@
         }
 
         .stat-label {
-            color: var(--text-muted);
             font-size: 0.8rem;
+            color: var(--text-muted);
             text-transform: uppercase;
         }
 
@@ -336,7 +325,7 @@
             background: var(--glass-bg);
             backdrop-filter: blur(10px);
             border-radius: var(--radius-lg);
-            margin: 1rem 0;
+            margin: 1.5rem 0;
         }
 
         .category-tabs {
@@ -344,14 +333,15 @@
             gap: 0.5rem;
             justify-content: center;
             flex-wrap: wrap;
+            padding: 0 0.5rem;
         }
 
         .tab-btn {
-            padding: 0.75rem 1rem;
+            padding: 0.6rem 1rem;
             border: 1px solid var(--glass-border);
             background: var(--glass-bg);
             color: var(--text-secondary);
-            border-radius: var(--radius-md);
+            border-radius: 100px;
             font-weight: 600;
             cursor: pointer;
             transition: var(--transition);
@@ -365,7 +355,15 @@
             .tab-btn {
                 min-width: auto;
                 padding: 0.75rem 1.25rem;
+                font-size: 0.9rem;
             }
+        }
+
+        .tab-btn:hover {
+            border-color: var(--primary);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
         }
 
         .tab-btn.active {
@@ -409,7 +407,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
-            cursor: pointer;
+            backdrop-filter: blur(10px);
         }
 
         .product-card:hover {
@@ -420,10 +418,10 @@
 
         .product-image-wrapper {
             position: relative;
+            overflow: hidden;
             aspect-ratio: 1 / 1;
             width: 100%;
             background: linear-gradient(45deg, var(--bg-dark), var(--bg-card));
-            overflow: hidden;
         }
 
         .product-card img {
@@ -434,16 +432,16 @@
         }
 
         .product-card:hover img {
-            transform: scale(1.08);
+            transform: scale(1.1);
         }
 
         .product-badge {
             position: absolute;
             top: 0.5rem;
             right: 0.5rem;
+            background: var(--secondary);
+            color: white;
             padding: 0.25rem 0.5rem;
-            background: var(--primary);
-            color: var(--bg-dark);
             border-radius: 100px;
             font-weight: 700;
             font-size: 0.7rem;
@@ -451,7 +449,7 @@
         }
 
         .product-card-content {
-            padding: 0.75rem;
+            padding: 1rem;
             display: flex;
             flex-direction: column;
             flex: 1;
@@ -462,7 +460,7 @@
             font-weight: 700;
             margin-bottom: 0.25rem;
             color: var(--text-primary);
-            line-height: 1.3;
+            line-height: 1.4;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -474,16 +472,18 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.5rem;
+            gap: 0.25rem;
             font-size: 0.7rem;
         }
 
         .category-badge {
             padding: 0.2rem 0.4rem;
             border-radius: 100px;
+            font-size: 0.65rem;
+            font-weight: 600;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             color: var(--primary);
-            font-size: 0.65rem;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -491,6 +491,7 @@
         }
 
         .product-stock {
+            font-size: 0.65rem;
             font-weight: 600;
             white-space: nowrap;
         }
@@ -757,12 +758,14 @@
         @media (min-width: 640px) {
             .agents-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
             }
         }
 
         @media (min-width: 1024px) {
             .agents-grid {
                 grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
             }
         }
 
@@ -773,6 +776,23 @@
             text-align: center;
             border: 1px solid var(--glass-border);
             transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .agent-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .agent-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
         }
 
         .agent-image-wrapper {
@@ -799,9 +819,9 @@
             height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid var(--bg-dark);
             position: relative;
-            z-index: 2;
+            z-index: 1;
+            border: 3px solid var(--bg-card);
         }
 
         .agent-name {
@@ -827,7 +847,6 @@
             justify-content: center;
             gap: 0.25rem;
             color: var(--text-secondary);
-            font-size: 0.9rem;
             margin-bottom: 0.5rem;
         }
 
@@ -859,41 +878,29 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
             display: none;
             justify-content: center;
-            align-items: flex-end;
+            align-items: center;
             z-index: 2000;
-        }
-
-        @media (min-width: 768px) {
-            .modal-overlay {
-                align-items: center;
-                padding: 20px;
-            }
+            padding: 20px;
         }
 
         .modal {
             background: var(--bg-card);
-            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+            border-radius: var(--radius-lg);
             width: 100%;
+            max-width: 500px;
             max-height: 90vh;
             overflow-y: auto;
             border: 1px solid var(--glass-border);
             animation: slideUp 0.3s;
         }
 
-        @media (min-width: 768px) {
-            .modal {
-                border-radius: var(--radius-lg);
-                max-width: 500px;
-            }
-        }
-
         @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         .modal-header {
@@ -909,6 +916,7 @@
         .modal-header h3 {
             color: var(--bg-dark);
             font-size: 1.2rem;
+            font-weight: 700;
         }
 
         .close-btn {
@@ -922,6 +930,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
         }
 
         .modal-body {
@@ -943,7 +953,7 @@
             width: 100%;
             padding: 0.75rem;
             background: var(--bg-dark);
-            border: 2px solid var(--glass-border);
+            border: 1px solid var(--glass-border);
             border-radius: var(--radius-md);
             color: var(--text-primary);
             font-size: 0.95rem;
@@ -1000,22 +1010,15 @@
             margin-bottom: 2rem;
         }
 
-        @media (min-width: 640px) {
-            .footer-content {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
+        @media (min-width: 768px) {
             .footer-content {
                 grid-template-columns: 2fr repeat(3, 1fr);
             }
         }
 
         .footer-section h4 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
             color: var(--primary);
+            margin-bottom: 1rem;
         }
 
         .footer-section ul {
@@ -1025,6 +1028,7 @@
         .footer-section li {
             margin-bottom: 0.5rem;
             color: var(--text-muted);
+            font-size: 0.8rem;
         }
 
         .footer-link {
@@ -1078,17 +1082,12 @@
             border: 3px solid var(--glass-border);
             border-top-color: var(--primary);
             border-radius: 50%;
-            animation: spin 1s linear infinite;
             margin: 0 auto 1rem;
+            animation: spin 1s linear infinite;
         }
 
         @keyframes spin {
             to { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
         }
 
         @keyframes rotate {
@@ -1133,6 +1132,7 @@
                 <div class="logo-icon"></div>
                 <div class="logo-text">
                     <h1>Elcira</h1>
+                    <p></p>
                 </div>
             </div>
             <nav class="nav">
@@ -1155,7 +1155,7 @@
                 </span>
                 <h2>Your Gateway to Premium Electronics</h2>
                 <p>Electronic components, digital products, and learning materials with expert support at ATBU Yelwa & Gubi campuses.</p>
-                
+
                 <div class="hero-stats">
                     <div class="stat-item">
                         <span class="stat-value">1000+</span>
@@ -1170,33 +1170,26 @@
                         <span class="stat-label">Support</span>
                     </div>
                 </div>
-                
+
                 <button class="btn primary" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
                     <i class="fas fa-shopping-bag"></i> Start Shopping
+                    <i class="fas fa-arrow-right"></i>
                 </button>
             </div>
         </div>
     </section>
 
-    <!-- Category Navigation -->
-    <section class="category-section">
+    <!-- Category Tabs -->
+    <div class="category-section">
         <div class="container">
-            <div class="category-tabs" id="categoryTabs">
-                <button class="tab-btn active" data-category="all">
-                    <i class="fas fa-layer-group"></i> All
-                </button>
-                <button class="tab-btn" data-category="Electronic Components">
-                    <i class="fas fa-microchip"></i> Components
-                </button>
-                <button class="tab-btn" data-category="Digital Products">
-                    <i class="fas fa-download"></i> Digital
-                </button>
-                <button class="tab-btn" data-category="Learning Materials">
-                    <i class="fas fa-graduation-cap"></i> Learning
-                </button>
+            <div class="category-tabs">
+                <button class="tab-btn active" data-category="all">All Products</button>
+                <button class="tab-btn" data-category="Electronic Components">🔌 Components</button>
+                <button class="tab-btn" data-category="Digital Products">💻 Digital</button>
+                <button class="tab-btn" data-category="Learning Materials">📚 Learning</button>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Products Grid -->
     <section class="products-section" id="products">
@@ -1218,7 +1211,7 @@
             <p style="text-align: center; color: var(--text-secondary); margin-bottom: 1.5rem;">
                 Dedicated agents across Bauchi state — including ATBU Yelwa and Gubi campuses.
             </p>
-            
+
             <div class="agents-grid" id="agentsGrid">
                 <div class="loading">
                     <div class="spinner"></div>
@@ -1238,7 +1231,7 @@
                         Founded in Bauchi to make premium electronics accessible to every Nigerian innovator. 
                         We serve ATBU Yelwa, Gubi campuses, and beyond with expert agent support.
                     </p>
-                    
+
                     <div class="about-features">
                         <div class="feature-card">
                             <i class="fas fa-truck-fast" style="font-size: 2rem; color: var(--primary);"></i>
@@ -1293,22 +1286,22 @@
                         <input type="text" id="customerName" name="customerName" placeholder="John Doe" required>
                         <div class="error-message" id="nameError"></div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="customerEmail">Email Address</label>
                         <input type="email" id="customerEmail" name="customerEmail" placeholder="john@example.com" required>
                         <div class="error-message" id="emailError"></div>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="customerPhone">Phone Number</label>
                         <input type="tel" id="customerPhone" name="customerPhone" placeholder="+234 801 234 5678">
                     </div>
-                    
+
                     <div class="order-summary" id="orderSummary"></div>
-                    
+
                     <input type="hidden" id="selectedProductId" name="productId">
-                    
+
                     <div class="form-actions">
                         <button type="button" class="btn secondary" id="cancelBtn">Cancel</button>
                         <button type="submit" class="btn primary" id="submitBtn">
@@ -1326,7 +1319,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
+                    <div class="footer-logo" style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
                         <div class="logo-icon" style="width: 36px; height: 36px;"></div>
                         <h3 style="font-size: 1.3rem;">Elcira</h3>
                     </div>
@@ -1335,18 +1328,30 @@
                         <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="footer-section">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#products" class="footer-link">Products</a></li>
                         <li><a href="#agents" class="footer-link">Agents</a></li>
+                        <li><a href="#about" class="footer-link">About</a></li>
                         <li><a href="/admin" class="footer-link">Admin</a></li>
                     </ul>
                 </div>
                 
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li>Electronic Components</li>
+                        <li>Digital Products</li>
+                        <li>Learning Materials</li>
+                        <li>Starter Kits</li>
+                    </ul>
+                </div>
+
                 <div class="footer-section">
                     <h4>Contact</h4>
                     <ul>
@@ -1356,7 +1361,7 @@
                     </ul>
                 </div>
             </div>
-            
+
             <div class="footer-bottom">
                 <p>© 2024 Elcira. Made with <i class="fas fa-heart" style="color: var(--danger);"></i> in Bauchi</p>
             </div>
@@ -1415,23 +1420,21 @@
                 this.currentCategory = 'all';
                 this.selectedProduct = null;
                 this.currentImageIndex = 0;
-                
+
                 this.init();
             }
 
-            async init() {
+            init() {
+                this.loadProducts();
+                this.loadAgents();
                 this.setupEventListeners();
-                await Promise.all([
-                    this.loadProducts(),
-                    this.loadAgents()
-                ]);
             }
 
             async loadProducts() {
                 try {
                     const response = await fetch('/api/products');
                     const data = await response.json();
-                    
+
                     if (data.success && Array.isArray(data.products)) {
                         this.products = data.products;
                         this.filteredProducts = [...this.products];
@@ -1519,21 +1522,26 @@
                 });
 
                 this.currentCategory = category;
+                
                 this.filteredProducts = category === 'all' 
                     ? [...this.products]
                     : this.products.filter(p => p.category === category);
 
                 this.renderProducts();
+                document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
             }
 
             renderProducts() {
                 const grid = document.getElementById('productsGrid');
-                
+
                 if (this.filteredProducts.length === 0) {
                     grid.innerHTML = `
                         <div style="grid-column: 1/-1; text-align: center; padding: 2rem;">
                             <i class="fas fa-box-open" style="font-size: 3rem; color: var(--text-muted);"></i>
                             <h3>No products found</h3>
+                            <button onclick="app.handleCategoryChange('all')" class="btn secondary" style="margin-top: 1rem;">
+                                View All Products
+                            </button>
                         </div>
                     `;
                     return;
@@ -1571,7 +1579,7 @@
 
             renderAgents() {
                 const grid = document.getElementById('agentsGrid');
-                
+
                 if (!this.agents?.length) {
                     grid.innerHTML = '<div class="loading"><p>Loading agents...</p></div>';
                     return;
@@ -1709,18 +1717,20 @@
                 `;
 
                 productIdInput.value = product.id;
-                document.getElementById('checkoutForm').reset();
-                document.getElementById('nameError').textContent = '';
-                document.getElementById('emailError').textContent = '';
-                
+
+                // Clear previous form data
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerEmail').value = '';
+                document.getElementById('customerPhone').value = '';
+
                 modal.style.display = 'flex';
                 document.body.style.overflow = 'hidden';
-                document.getElementById('customerName').focus();
             }
 
             closeCheckoutModal() {
                 document.getElementById('checkoutModal').style.display = 'none';
                 document.body.style.overflow = 'auto';
+                this.selectedProduct = null;
             }
 
             validateName(name) {
@@ -1739,11 +1749,11 @@
 
             async handleCheckout(e) {
                 e.preventDefault();
-                
+
                 const form = e.target;
                 const submitBtn = form.querySelector('#submitBtn');
                 const spinner = form.querySelector('#submitSpinner');
-                
+
                 const customerData = {
                     name: form.customerName.value.trim(),
                     email: form.customerEmail.value.trim(),
@@ -1770,7 +1780,7 @@
                     });
 
                     const result = await response.json();
-                    
+
                     if (result.success) {
                         Utils.showNotification('Order received! Redirecting...', 'success');
                         setTimeout(() => {
@@ -1780,6 +1790,7 @@
                         throw new Error(result.error || 'Failed to process order');
                     }
                 } catch (error) {
+                    console.error('❌ Checkout error:', error);
                     Utils.showNotification('Error: ' + error.message, 'error');
                 } finally {
                     submitBtn.disabled = false;
